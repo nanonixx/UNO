@@ -13,7 +13,7 @@ public class Main {
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";  //vaina de los colores en el texto
+    public static final String ANSI_GREEN = "\u001B[32m";  // los colores en el texto
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
 
@@ -70,7 +70,7 @@ public class Main {
 
         while (game) {
 
-            if (turno) { //turno del jugador
+            if (turno) { //turno del jugador  TODO ESTO LO TENGO QUE PONER EN 1 FUNCION
                 Thread.sleep(1000);
                 System.out.println("\u001B[36m\n~~~ TU TURNO ~~~\n"+ANSI_RESET);
 
@@ -85,7 +85,7 @@ public class Main {
 
             }
 
-            else { //turno del ordenador
+            else { //turno del ordenador   ESTO TAMBIÉN
                 System.out.println("\u001B[36m\n~~~ TURNO DE LA MÁQUINA ~~~\n"+ANSI_RESET);
                 //System.out.print("Mano máquina: ");
                 //Action.ver_mano(hand_comp);
@@ -108,7 +108,7 @@ public class Main {
                 topcard.skips=false;   //vamos a revertir el valor pa que no se ralle y entre en bucle o algo
             }
 
-            if (hand_comp.size()==0 || (hand_player.size()==0)) game=false;  //si tienes 0 cartas a la verga el jeugo
+            if (hand_comp.size()==0 || (hand_player.size()==0)) game=false;  //si tienes 0 cartas a la . el jeugo
         }
 
         if (hand_comp.size()==0) System.out.println("Lo siento, te ha ganado una máquina pringao"); //si pierdes sale esto

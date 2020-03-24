@@ -15,8 +15,7 @@ public class Action {
     public static Card DeckCard() {          //lo que te da una carta random
         Random rand = new Random();
         Card c = new Card();
-        c.skips=false;       //por defecto no skippea OMG ESTO LO PUEDO CAMBIAR PARA NO VICIARLO TANTO LUEGO!! REVELACION
-                             //MIENTRAS ESCRIBO COMENTARIOS CHORRAS OMG!!!!!!!!!!!!!!!!!!!!
+        c.skips=false;       //esto lo tengo que cambiar a mas senilcllo
         int tipo = rand.nextInt(100); //numero random del 0 al 100
 
         int colors = rand.nextInt(4); //4 colores a ver que sale en random
@@ -37,8 +36,8 @@ public class Action {
 
         }
         if (tipo <= 71) { //numericos
-            while (c.num == 0) {              //me cuenta el 0 pero no me da la gana poner la carta 0... debería?
-                c.num = rand.nextInt(9); //del 0 al 9 pero si no es 0 se revierte. celebro ga-la-xia
+            while (c.num == 0) {              //no hay 0
+                c.num = rand.nextInt(9); //del 0 al 9 pero si no es 0
             }
 
 
@@ -71,23 +70,23 @@ public class Action {
         System.out.println("Tu mano:");
         int cont = 1;   //numerito delante de cada carta
 
-        for (Card carta : (Iterable<Card>) hand) {  //lo de los socios pero el intellij me dice que asi mas corto (no entiendo pero funciona)
+        for (Card carta : (Iterable<Card>) hand) {  //(no entiendo pero funciona)
             System.out.print(cont + ":  ");
-            colorines(carta);   //función del futuro *musica de regreso al futuro*
-            cont++;  //pos un contador naomi
+            colorines(carta);
+            cont++;  //pos un contador
         }
     }
 
     public static Card play_card(ArrayList hand, Card topcard, ArrayList handIA) { //he hecho otra porque si no no imprime
-        System.out.println("¿Que carta quieres jugar?");                          //pero podria ponerle un booleano de player true if maquina false
-        Scanner input = new Scanner(System.in);                                   //ya veremos qué hago xd
-        boolean uno=false;  //si no dices uno a la pinga vas
-        boolean validvalid=false;     //parezco adria con los booleanos ()
+        System.out.println("¿Que carta quieres jugar?");                          //ena false
+        Scanner input = new Scanner(System.in);                                   //y
+        boolean uno=false;  //si no dices uno no gana
+        boolean validvalid=false;     //mas booleanos
 
         int p = 1; //la carta a testear a ver si nos las quieres colar o no
 
-        boolean saltar; //skipea turno??? esto lo controla nice
-        boolean valid = false; //otro valid de mierda, yokese (carta valida o numero para timar)
+        boolean saltar; //skipea turno??? esto lo controla
+        boolean valid = false; //yokese (carta valida o numero para timar)
 
         while (!valid) {
             boolean valid2 = false; //OTRO BOOLEANO JAJAJAJAJAJA NO ME ACUERDO YA (creo que mira que hayas metido un int)
@@ -104,7 +103,7 @@ public class Action {
                             System.out.println("¿Quieres jugar esta carta? (S/n)");
                             String Si=input.nextLine();
                             String si=Si.toLowerCase();
-                            if (si.equals("s")){    //mayus o minusculas. otra cosa y entiende como 'no'! al loro!!
+                            if (si.equals("s")){    //mayus o minusculas. otra cosa y entiende como 'no'! porque mira
                                 topcard = robada;
                                 hand.remove(hand.size() - 1);  //te quita la ultima carta añadida
                                 Especiales.special(handIA, robada);
@@ -114,7 +113,7 @@ public class Action {
 
                         }
 
-                        return (topcard); //a la verga la funcion.. creo?
+                        return (topcard); //?
                     }
                     String u = enteredValue.toLowerCase();   //has dicho uno, bribón?
                     if (u.equals("uno")) {
@@ -143,7 +142,7 @@ public class Action {
                 System.out.print("Has robado una carta: ");
                 colorines(robada);
 
-                if (Especiales.prueba_carta(robada, topcard)){  //lo mismo de antes pero no se ponerlo en funcion JAJAJ
+                if (Especiales.prueba_carta(robada, topcard)){  //lo mismo de antes pero no se ponerlo en funcion JAJAJ ayuda
                     System.out.println("¿Quieres jugar esta carta? (S/n)");
                     String Si=input.nextLine();
                     String si=Si.toLowerCase();
@@ -161,7 +160,7 @@ public class Action {
 
             }
 
-            Card test = (Card) hand.get(p - 1); // [ IMPORTANTE somehow ]
+            Card test = (Card) hand.get(p - 1); // [ IMPORTANTE
 
             if (test.color.equals(topcard.color) || test.num == topcard.num || topcard.color.equals("cc") || test.color.equals("cc")) {
                 if (hand.size()!=1||uno) {  //si coincide numero y color o es cambiocolor está nice
@@ -170,14 +169,14 @@ public class Action {
                 }
                else{
                     System.out.println("No has escrito \"UNO\" antes de tirar la última carta. Robas 1 carta.");
-                      Robar(hand);   //pa los pringaos que se olvidan lmao
+                      Robar(hand);   //pa los pringaos que se olvidan de poner uno
                 }
                 valid = true;
 
 
                 topcard=Especiales.cambiocolor(test, topcard); //enseña topcard
 
-                saltar = Especiales.special(handIA, test); //evalua si skipea
+                saltar = Especiales.special(handIA, test); //mira si skipea
                 if (test.num == 13) {  //+4?
                     for (int i = 0; i < 4; i++) {
                         Action.Robar(handIA);   //la ia roba con +4

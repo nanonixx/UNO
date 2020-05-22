@@ -6,18 +6,19 @@ import java.util.Scanner;
 public class Player {
     Scanner input = new Scanner(System.in);
 
-    public static void ver_mano(ArrayList hand) {  //ver_mano
+    public static void ver_mano(ArrayList<Card> hand) {  //ver_mano
         System.out.println("Tu mano:");
         int cont = 1;
 
-        for (Card carta : (Iterable<Card>) hand) { //gracias stackoverflow
+        for (Card carta : hand) { //gracias stackoverflow
             System.out.print(cont + ":  ");
             Display.colorines(carta);
             cont++;
+
         }
     }
 
-    public static Card play_card(ArrayList hand, Card topcard, ArrayList handIA) {
+    public static Card play_card(ArrayList<Card> hand, Card topcard, ArrayList<Card> handIA) {
         Scanner input = new Scanner(System.in);
         boolean uno = false;
         boolean validuno = false;
@@ -48,8 +49,8 @@ public class Player {
                             if (s.equals("s")){    //mayus o minusculas. otra cosa y entiende como 'no'!
                                 topcard = robada;
                                 hand.remove(hand.size() - 1);  //te quita la ultima carta añadida
-                                if (robada.special==true) Card.special_action(handIA, robada);
-                                if (robada.cc==true) topcard=Card.cambiocolor(robada, topcard);  //no hace los skips bien
+                                if (robada.special) Card.special_action(handIA, robada);
+                                if (robada.cc) topcard=Card.cambiocolor(robada, topcard);  //no hace los skips bien
                                 if (robada.num==-1||robada.num==10||robada.num==11||robada.num==13) topcard.skips=true;
                             }
 
@@ -133,6 +134,7 @@ public class Player {
     }
 
     public static Card turn(Card topcard, ArrayList<Card> hand_player, ArrayList<Card> hand_comp) throws InterruptedException {
+        File.log_writer(topcard, true, false);
         Thread.sleep(1000);
         System.out.println("\u001B[36m\n~~~ TU TURNO ~~~\n"+"\u001B[0m");
 
@@ -144,6 +146,7 @@ public class Player {
 
         System.out.print("\nTOP CARD: ");
         Display.colorines(topcard);
+        File.log_writer(topcard, true, true);
         return (topcard);
     }
 
